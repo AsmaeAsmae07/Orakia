@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width= device-width, initial-scale=1.0, user-scalable=yes">
+        <title>ORAKIA - Le sanctuaire des légendes animales | ZOO</title>
+        <meta name="description" content="ORAKIA - Le sanctuaire des légendes animales - parc animalier unique avec 17 espèces venues des 5 continents. Une aventure immersive au cœur de la biodiversité.">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            :root{
+                --primary: rgb(10, 154, 10);
+                --primary-light: rgba(11, 223, 11);
+                --secondary: rgba(255, 217, 0, 0.621);
+                --secondary-light: rgba(255, 217, 0, 0.963);
+                --secondary-dark: rgba(255, 217, 0, 0.326);
+                --accent: green;
+                --accent-light: rgb(0, 201, 0);
+                --white: white;
+                --light: rgba(0, 255, 94);
+                --dark: rgba(12, 0, 0, 0.486);
+                --gold: rgba(255, 217, 0, 0.621);
+                --gray: gray;
+                --text: black;
+                --instagram: #e13252;
+                --facebook: blue;
+                --whatsapp: green;
+                --shadow: 0 15px 35px rgba(0,0,0,0,1);
+                --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+                --transition: all 0.3s ease;
+                --header-height: 80%;
+            }
+
+            body{
+                font-family: Verdana, Arial, sans-serif;
+                background-color: var(--light);
+                color: var(--text);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            h1, h2, h3, h4, .logo, .nav-links a, .hero-title, .card-title {
+                font-family: 'Playfair Display', serif;
+            }
+
+            /* === header and nav === */
+            header{
+                background: var(--white);
+                backdrop-filter: blur(10px);
+                height: var(--header-height);
+                display: flex;
+                justify-content: space-between;
+                align-items: center; 
+                padding: 0 5%;
+                position: sticky;
+                top: 0%;
+                z-index: 1000;
+                box-shadow: var(--shadow);
+            }
+
+            /* === barre de nav === */
+            .navbar{
+                display: flex;
+                justify-content: space-between;  /* LOGO à gauche, reste à droite */
+                align-items: center;
+                padding: 1rem 5%;
+                max-width: 1400px;
+                margin: 0 auto;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            /* === logo === */
+            .logo{
+                display: flex;
+                font-size: 16px;
+                font-weight: bold;
+                padding-left: 40px;
+                letter-spacing: -0.5px;
+            }
+            
+            /* === menu de nav === */
+            .nav-links{
+                display: flex;
+                list-style: none;
+            }
+
+            .nav-links a{
+                color: var(--gold);
+                text-decoration: none;
+                font-size: 10px;
+                font-weight: 500;
+                padding-right: 40px;
+                transition: var(--transition);
+                cursor: pointer;
+            }
+
+            .nav-links a:hover, .nav-links a:active{
+                background-color: var(--secondary);
+            }
+            
+            .menu-toggle{
+                display: none;           /* === Caché par défaut (sur desktop) === */
+                font-size: 1.8rem;
+                cursor: pointer;
+                color: var(--primary);
+            }
+
+            /* === langue === */
+            .language-selector{
+                display: flex;
+                gap: 0.5rem;
+                margin-left: 1rem;
+            }
+            
+            /* === button lang === */
+            .lang-btn{
+                background: transparent;
+                border: 1px solid var(--secondary);
+                border-radius: 20px;
+                padding: 0.3rem 0.8rem;
+                cursor: pointer;
+                font-size: 0.8rem;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 0.3rem;
+                font-family: 'Inter', sans-serif;
+            }
+
+            .lang-btn img{
+                width: 16px;
+                height: 12px;
+                object-fit: cover;
+            }
+
+            .lang-btn.active{
+                background: var(--secondary);
+                color: var(--dark);
+                border-color: var(--secondary);
+            }
+
+            .lang-btn:hover:not(.active){
+                background: rgba(233, 179, 95, 0.2);
+            }
+
+            /* === hero === */
+            .hero{
+                background: linear-gradient(135deg, rgba(27,77,62,0.88), rgba(44,95,45,0.75)), url('https://images.unsplash.com/photo-1549366021-9f761d450615?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                color: white;
+            }
+
+            .hero-content{
+                max-width: 800px;
+                margin: 0% auto;
+            }
+
+            .hero-title{
+                font-size: 70px;
+                margin-bottom: 1rem;
+                animation: fadeInUp 0.8s ease;
+            }
+
+            .hero-subtitles{
+                font-size: 20px;
+                margin-bottom: 8px;
+                opacity: 10px;
+            }
+
+            .hero p{
+                font-size: 20px;
+                margin-bottom: 2rem;
+                animation: fadeInUp 1s ease;
+            }
+
+            /* Animations */
+            @keyframes fadeInUp{
+                from{ 
+                    opacity: 0; 
+                    transform: translateY(30px); 
+                }
+                to{ 
+                    opacity: 1; 
+                    transform: translateY(0); 
+                }
+            }
+
+            /* === sections === */
+            section{
+                padding: 5rem 5%;
+            }
+
+            .container{
+                max-width: 1200PX;
+                margin: 0% auto;
+            }
+
+            .section-title{
+                font-size: 2.5rem;
+                text-align: center;
+                margin-bottom: 3rem;
+                color: var(--primary);
+                position: relative;
+            }
+
+            .section-title:after{
+                content: '';
+                display: block;
+                width: 80px;
+                height: 3px;
+                background: var(--secondary);
+                margin: 0.8rem auto 0;
+            }
+
+            /* === grilles === */
+            .grid-3{
+                display: grid;
+                gap: 2rem;
+                grid-template-columns: 1fr;  /* mobile : 1 colonne */
+            }
+
+            @media (min-width: 768px){
+                .grid-3{
+                    grid-template-columns: repeat(2, 1fr);  /* tablette : 2 colonnes */
+                }
+            }
+
+            @media (min-width: 1024px){
+                .grid-3{
+                    grid-template-columns: repeat(3, 1fr);  /* desktop : 3 colonnes */
+                }
+            }
+
+            .grid-4{
+                display: grid;
+                gap: 2rem;
+                grid-template-columns: 1fr;
+            }
+
+            @media (min-width: 640px){
+                .grid-4{
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            @media (min-width: 900px){
+                .grid-4{
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+            
+            @media (min-width: 1200px){
+                .grid-4{
+                    grid-template-columns: repeat(4, 1fr);
+                }
+            }
+
+            .card{
+                background: var(--white);
+                border-radius: 24px;
+                overflow: hidden;
+                box-shadow: var(--shadow);
+                transition: var(--transition);
+            }
+
+            .card:hover{
+                transform: translateY(-8px);
+                box-shadow: var(--shadow-hover);
+            }
+
+            .card-img{
+                width: 100%;
+                height: 220px;
+                object-fit: cover;
+            }
+
+            .card-content{
+                padding: 1.5rem;
+            }
+
+            .card-title{
+                font-size: 1.4rem;
+                margin-bottom: 0.5rem;
+                color: var(--primary);
+            }
+
+            /* === formulaire === */
+            .contact-form{
+                max-width: 600px;
+                margin: 0 auto;
+                background: var(--white);
+                padding: 2rem;
+                border-radius: 24px;
+                box-shadow: var(--shadow);
+            }
+
+            .form-group{
+                margin-bottom: 1.2rem;
+            }
+
+            .form-group label{
+                font-weight: 500;
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+
+            .form-group input, .form-group textarea, .form-group select{
+                width: 100%;
+                font-family: inherit;
+                padding: 0.8rem;
+                border: 1px solid #ddd;
+                border-radius: 12px;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 0.9rem 2rem;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                border: none;
+                cursor: pointer;
+                font-family: inherit;
+                font-size: 1rem;
+            }
+
+            .btn-primary {
+                background: var(--secondary);
+                color: var(--dark);
+                width: 100%;
+            }
+
+            .btn-primary:hover {
+                background: var(--dark);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            /* === quiz === */
+            .quiz-container{
+                background: var(--white);
+                border-radius: 24px;
+                padding: 2rem;
+                box-shadow: var(--shadow);
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .quiz-question{
+                margin-bottom: 1.5rem;
+            }
+            
+            .quiz-options label{
+                display: block;
+                margin: 0.5rem 0;
+                cursor: pointer;
+            }
+
+            /* === footer === */
+            footer{
+                background: var(--dark);
+                color: #ccc;
+                text-align: center;
+                padding: 3rem 1% 5rem;
+                margin-top: 3rem;
+            }
+
+            .social-icons{
+                margin-bottom: 1rem;
+            }
+
+            .social-icons a{
+                color: white;
+                margin: 0 0.5rem;
+                font-size: 1.5rem;
+                transition: all 0.3s ease;
+                display: inline-block;
+            }
+
+            .social-icons a:hover{
+                color: var(--secondary);
+                transform: translateY(-3px);      /* monte de 3px */
+            }
+
+            /* === pages SPA === */
+            .page{
+                display: none; 
+                animation: fadeIn 0.4s ease;
+            }
+
+            .active-page{
+                display: block;
+            }
+
+            @keyframes fadeIn{
+                from{opacity: 0;}
+                to{opacity: 1;}
+            }
+
+            .nav-link.active{
+                color: var(--secondary);
+                font-weight: 600;
+                border-bottom: 2px solid var(--secondary);
+            }
+
+            /* === responsive === */
+            @media (max-width: 768px){
+                .menu-toggle{ 
+                    display: block;        /* === Visible uniquement sur mobile === */
+                    order: 3;
+                }
+                .language-selector{
+                    margin-left: auto;
+                    order: 2;
+                }
+                .logo{
+                    order: 1;
+                }
+                .navbar{
+                    flex-wrap: wrap;
+                }
+                .nav-links{
+                    position: fixed;
+                    top: 70px;
+                    left: -100%;
+                    background: var(--white);
+                    flex-direction: column;
+                    width: 100%;
+                    text-align: center;
+                    transition: 0.3s;
+                    gap: 1.5rem;
+                    padding: 2rem 0;
+                    z-index: 999;
+                }
+                .nav-links.active{ 
+                    left: 0; 
+                }
+                .hero-title{ 
+                    font-size: 2.5rem; 
+                }
+                .section-title{ 
+                    font-size: 1.8rem; 
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <div class="logo" onclick="navigateTo('home')">
+                    <div class="logo-circle">🦁</div>
+                    <div class="logo-text">
+                        <h2>ORAKIA</h2>
+                        <p>WILDLIFE SANCTUARY</p>
+                    </div>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a onclick="navigateTo('home')">Accueil</a></li>
+                    <li><a onclick="navigateTo('animals')">Nos Animaux</a></li>
+                    <li><a onclick="navigateTo('species')">Fiches Espèces</a></li>
+                    <li><a onclick="navigateTo('shows')">Spectacles</a></li>
+                    <li><a onclick="navigateTo('prices')">Tarifs</a></li>
+                    <li><a onclick="navigateTo('conservation')">Conservation</a></li>
+                    <li><a onclick="navigateTo('kids')">Espace Enfant</a></li>
+                    <li><a onclick="navigateTo('contact')">Contact</a></li>
+                </ul>
+                <div class="burger" id="burgerBtn">☰</div>
+            </div>
+        </nav>
+
+        <main>
+            <!-- ACCUEIL - Hero pleine largeur -->
+            <div id="home" class="page active-page">
+                <div class="hero-full">
+                    <div class="hero-content">
+                        <div class="hero-badge">✨ Sanctuaire des Légendes Animales ✨</div>
+                        <h1>Bienvenue à <span>ORAKIA</span></h1>
+                        <p>Là où la nature raconte ses plus belles histoires. 17 espèces, 5 continents, une aventure inoubliable.</p>
+                        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                            <button class="btn" onclick="navigateTo('prices')">🎟️ Réserver</button>
+                            <button class="btn btn-outline" onclick="navigateTo('animals')">🐘 Découvrir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid reveal" style="max-width: 1400px; margin: 50px auto 0;">
+                    <div>
+                        <div class="stat-number">17+</div>
+                        <div>Espèces animales</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">5</div>
+                        <div>Continents</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">150k+</div>
+                        <div>Visiteurs/an</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">12</div>
+                        <div>Programmes de conservation</div>
+                    </div>
+                </div>
+
+                <div class="grid-3 reveal" style="max-width: 1400px; margin: 50px auto 0;">
+                    <div class="card-premium">
+                        <img class="card-img" src="Capture d'écran 2026-04-23 144327.png" alt="Lion">
+                        <div class="card-content">
+                            <h3>🏆 Excellence Zoo</h3>
+                            <p>Label international pour le bien-être animal et la conservation des espèces menacées.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-premium">
+                        <img class="card-img" src="Capture d'écran 2026-04-23 144247.png" alt="Éléphant">
+                        <div class="card-content">
+                            <h3>🌍 Immersion Totale</h3>
+                            <p>Des habitats naturels reconstitués pour une expérience authentique.</p>
+                        </div>
+                    </div>
+            
+                    <div class="card-premium">
+                        <img class="card-img" src="Capture d'écran 2026-04-23 150208.png" alt="Girafe">
+                        <div class="card-content">
+                            <h3>📍 Au Cœur du Maroc</h3>
+                            <p>À seulement 20 minutes de Marrakech, accessible et accueillant.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal" style="text-align: center; margin-top: 50px; max-width: 1400px; margin-left: auto; margin-right: auto;">
+                    <h3 style="color: var(--forest);">Ils nous ont adoptés ★★★★★</h3>
+                    <div class="grid-4" style="margin-top: 25px;">
+                        <div class="card-premium">
+                            <div class="card-content">
+                                <span style="color: var(--savanna);">★★★★★</span>
+                                <p>"Un zoo magnifique, les animaux semblent heureux."</p><strong>- Sophie M.</strong>
+                            </div>
+                        </div>
+                        <div class="card-premium">
+                            <div class="card-content">
+                                <span style="color: var(--savanna);">★★★★★</span>
+                                <p>"Spectacle des oiseaux époustouflant !"</p><strong>- Karim B.</strong>
+                            </div>
+                        </div>
+                        <div class="card-premium">
+                            <div class="card-content">
+                                <span style="color: var(--savanna);">★★★★★</span>
+                                <p>"Mes enfants ont adoré l'espace baby zoo."</p><strong>- Nadia L.</strong>
+                            </div>
+                        </div>
+                        <div class="card-premium">
+                            <div class="card-content">
+                                <span style="color: var(--savanna);">★★★★★</span>
+                                <p>"À refaire absolument. Mention spéciale pour les soigneurs."</p><strong>- Youssef R.</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANIMAUX - 17 ESPÈCES -->
+            <div id="animals" class="page">
+                <h2 style="color: var(--forest); text-align: center; margin-bottom: 15px; font-size: 2.2rem;">Nos 17 Ambassadeurs</h2>
+                <p style="text-align: center; margin-bottom: 45px; color: #666;">Venus des 5 continents, ces espèces vous attendent pour une aventure inoubliable</p>
+        
+                <div class="animal-showcase">
+                    <!-- 1 - Lion d'Afrique -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 144327.png" alt="Lion">
+                        <div class="animal-info">
+                            <h3>🦁 Lion d'Afrique</h3><p>Panthera leo - Le roi de la savane</p><div class="animal-tag">Afrique</div>
+                        </div>
+                    </div>
+                    <!-- 2 - Éléphant de Savane -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 144247.png" alt="Éléphant">
+                        <div class="animal-info">
+                            <h3>🐘 Éléphant de Savane</h3><p>Loxodonta africana - Mémoire et sagesse</p><div class="animal-tag">Afrique</div>
+                        </div>
+                    </div>
+                    <!-- 3 - Girafe Masaï -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 150208.png" alt="Girafe">
+                        <div class="animal-info">
+                            <h3>🦒 Girafe Masaï</h3><p>Giraffa tippelskirchi - L'animal le plus grand</p><div class="animal-tag">Afrique</div>
+                        </div>
+                    </div>
+                    <!-- 4 - Tigre du Bengale -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 145655.png" alt="Tigre">
+                        <div class="animal-info">
+                            <h3>🐅 Tigre du Bengale</h3><p>Panthera tigris - Rayures uniques</p><div class="animal-tag">Asie</div>
+                        </div>
+                    </div>
+                    <!-- 5 - Manchot Royal -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 144506.png" alt="Manchot">
+                        <div class="animal-info">
+                            <h3>🐧 Manchot Royal</h3><p>Aptenodytes patagonicus - Plongeur exceptionnel</p><div class="animal-tag">Antarctique</div>
+                        </div>
+                    </div>
+                    <!-- 6 - Flamant Rose -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 144411.png" alt="Flamant">
+                        <div class="animal-info">
+                            <h3>🦩 Flamant Rose</h3><p>Phoenicopterus roseus - Élégance en rose</p><div class="animal-tag">Afrique/Europe</div>
+                        </div>
+                    </div>
+                    <!-- 7 - Gorille des plaines -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 183135.png" alt="Gorille">
+                        <div class="animal-info">
+                            <h3>🦍 Gorille des plaines</h3><p>Gorilla gorilla - Intelligence et force</p><div class="animal-tag">Afrique</div>
+                        </div>
+                    </div>
+                    <!-- 8 - Zèbre de Grévy -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 183018.png" alt="Zèbre">
+                        <div class="animal-info">
+                            <h3>🦓 Zèbre de Grévy</h3><p>Equus grevyi - Rayures élégantes</p><div class="animal-tag">Afrique</div>
+                        </div>
+                    </div>
+                    <!-- 9 - Rhinocéros blanc -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 182916.png" alt="Rhinocéros">
+                        <div class="animal-info">
+                            <h3>🦏 Rhinocéros blanc</h3><p>Ceratotherium simum - Géant pacifique</p><div class="animal-tag">Afrique</div>
+                        </div>
+                    </div>
+                    <!-- 10 - Panda roux -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 174941.png" alt="Panda roux">
+                        <div class="animal-info">
+                            <h3>🐼 Panda roux</h3><p>Ailurus fulgens - Esquisse rousse</p><div class="animal-tag">Asie</div>
+                        </div>
+                    </div>
+                    <!-- 11 - Loup gris -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 182749.png" alt="Loup">
+                        <div class="animal-info">
+                            <h3>🐺 Loup gris</h3><p>Canis lupus - Légende vivante</p><div class="animal-tag">Europe/Amérique</div>
+                        </div>
+                    </div>
+                    <!-- 12 - Suricate -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 182618.png" alt="Suricate">
+                        <div class="animal-info">
+                            <h3>🦡 Suricate</h3><p>Suricata suricatta - Sentinelle du désert</p><div class="animal-tag">Afrique</div>
+                        </div>
+                    </div>
+                    <!-- 13 - Loutre géante -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 144913.png" alt="Loutre">
+                        <div class="animal-info">
+                            <h3>🦦 Loutre géante</h3><p>Pteronura brasiliensis - Joueur espiègle</p><div class="animal-tag">Amérique du Sud</div>
+                        </div>
+                    </div>
+                    <!-- 14 - Ours brun -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 182457.png" alt="Ours">
+                        <div class="animal-info">
+                            <h3>🐻 Ours brun</h3><p>Ursus arctos - Seigneur des forêts</p><div class="animal-tag">Europe/Asie</div>
+                        </div>
+                    </div>
+                    <!-- 15 - Lynx boréal -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 182343.png" alt="Lynx">
+                        <div class="animal-info">
+                            <h3>🐱 Lynx boréal</h3><p>Lynx lynx - Regard perçant</p><div class="animal-tag">Europe/Asie</div>
+                        </div>
+                    </div>
+                    <!-- 16 - Kangourou roux -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 182109.png" alt="Kangourou">
+                        <div class="animal-info">
+                            <h3>🦘 Kangourou roux</h3><p>Macropus rufus - Sauteur d'Océanie</p><div class="animal-tag">Océanie</div>
+                        </div>
+                    </div>
+                    <!-- 17 - Panthère noire -->
+                    <div class="animal-item">
+                        <img class="animal-img" src="Capture d'écran 2026-04-23 181809.png" alt="Panthère">
+                        <div class="animal-info">
+                            <h3>🐆 Panthère noire</h3><p>Panthera pardus - Mystère et élégance</p><div class="animal-tag">Afrique/Asie</div>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 40px; font-style: italic; color: #666;">Et bien d'autres espèces à découvrir lors de votre visite !</p>
+            </div>
+
+            <!-- FICHES ESPÈCES -->
+            <div id="species" class="page">
+                <h2 style="color: var(--forest); text-align: center; margin-bottom: 35px;">Focus Espèce : Lion d'Afrique</h2>
+                <div class="grid-2">
+                    <div class="card-premium">
+                        <div class="card-content">
+                            <h3>📋 Caractéristiques</h3>
+                            <p><strong>Nom scientifique :</strong> Panthera leo<br><strong>Habitat :</strong> Savanes d'Afrique subsaharienne<br><strong>Régime :</strong> Carnivore<br><strong>Longévité :</strong> 12-15 ans (nature) / 25 ans (parc)<br><strong>Poids :</strong> 150-250 kg (mâle)<br><strong>Statut UICN :</strong> Vulnérable</p>
+                        </div>
+                    </div>
+                    <div class="card-premium">
+                        <div class="card-content">
+                            <h3>🦁 Notre engagement</h3>
+                            <p>ORAKIA participe au Programme Européen pour les Espèces Menacées (EEP) pour les lions. Notre troupe compte 7 individus, dont 3 naissances en 2024. Nous collaborons avec l'Association pour la Conservation des Félins d'Afrique.</p><br>
+                            <p><strong>Horaires nourrissage :</strong> 16h00 - Tous les jours</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-premium" style="margin-top: 30px;">
+                    <div class="card-content">
+                        <h3>🌍 Autres espèces protégées chez ORAKIA</h3>
+                        <div class="grid-3" style="margin-top: 15px;">
+                            <div>🐘 Éléphant de savane</div>
+                            <div>🐅 Tigre du Bengale</div>
+                            <div>🦍 Gorille des plaines</div>
+                            <div>🦏 Rhinocéros blanc</div>
+                            <div>🐪 Dromadaire</div>
+                            <div>🦩 Flamant rose</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPECTACLES -->
+            <div id="shows" class="page">
+                <h2 style="color: var(--forest); text-align: center; margin-bottom: 45px;">Animations & Spectacles</h2>
+                <div class="grid-3">
+                    <div class="card-premium">
+                        <img class="card-img" src="Capture d'écran 2026-04-23 144627.png" alt="Oiseaux">
+                        <div class="card-content">
+                            <h3>🦜 Parade des Oiseaux</h3>
+                            <p>Vol libre des perroquets, perruches et rapaces.<br><strong>📅 11h00 & 15h00</strong></p>
+                        </div>
+                    </div>
+                    <div class="card-premium">
+                        <img class="card-img" src="Capture d'écran 2026-04-23 144913.png" alt="Loutres">
+                        <div class="card-content">
+                            <h3>🦦 Rencontre avec les loutres</h3>
+                            <p>Animation ludique avec les soigneurs.<br><strong>📅 14h00 (sur réservation)</strong></p>
+                        </div>
+                    </div>
+                    <div class="card-premium">
+                        <img class="card-img" src="Capture d'écran 2026-04-23 145001.png" alt="Lions">
+                        <div class="card-content">
+                            <h3>🦁 Nourrissage des Lions</h3>
+                            <p>Assistez au repas des rois de la savane.<br><strong>📅 16h00</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-premium" style="background: linear-gradient(135deg, var(--forest), var(--forest-light)); color: white; text-align: center;">
+                    <div class="card-content">
+                        <h3 style="color: var(--savanna);">✨ Spectacle Nocturne "Légendes Animales" ✨</h3>
+                        <p>Contes africains, projections lumineuses et rencontre avec nos ambassadeurs nocturnes.</p>
+                        <p><strong>📅 Samedi 20h00 | 🎟️ Sur réservation uniquement</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TARIFS -->
+            <div id="prices" class="page">
+                <h2 style="color: var(--forest); text-align: center; margin-bottom: 45px;">Billets & Pass</h2>
+                <div class="price-grid" style="margin-bottom: 40px;">
+                    <div class="price-card">
+                        <h3>Adulte</h3>
+                        <div class="price-amount">120 MAD</div>
+                        <p>12 - 64 ans</p><p>✅ Accès complet + spectacles</p>
+                        <button class="btn" style="margin-top: 20px;" onclick="navigateTo('contact')">Réserver</button>
+                    </div>
+                    <div class="price-card featured">
+                        <h3>Enfant</h3>
+                        <div class="price-amount">80 MAD</div>
+                        <p>3 - 11 ans</p><p>✅ Parc + aire de jeux + atelier</p>
+                        <button class="btn" style="margin-top: 20px;" onclick="navigateTo('contact')">Réserver</button>
+                    </div>
+                    <div class="price-card">
+                        <h3>Famille</h3>
+                        <div class="price-amount">330 MAD</div>
+                        <p>2 adultes + 2 enfants</p>
+                        <p>✅ Économie + boisson offerte</p>
+                        <button class="btn" style="margin-top: 20px;" onclick="navigateTo('contact')">Réserver</button>
+                    </div>
+                    <div class="price-card">
+                        <h3>Pass Annuel</h3>
+                        <div class="price-amount">450 MAD</div>
+                        <p>Accès illimité 1 an</p>
+                        <p>✅ -10% boutique & resto</p>
+                        <button class="btn" style="margin-top: 20px;" onclick="navigateTo('contact')">Souscrire</button>
+                    </div>
+                </div>
+
+                <div class="card-premium friday-special" style="text-align: center; margin-top: 20px;">
+                    <div class="card-content">
+                        <h3 style="color: var(--forest);">📅 Offre Spéciale Vendredi 📅</h3>
+                        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 20px;">
+                            <div>
+                                <p><strong>Adulte</strong></p>
+                                <p>
+                                    <span class="price-old">120 MAD</span>
+                                    <span class="price-amount" style="font-size: 1.8rem;">80 MAD</span>
+                                </p>
+                                <span class="promo-badge">-33%</span>
+                            </div>
+                            <div>
+                                <p><strong>Enfant</strong></p>
+                                <p>
+                                    <span class="price-old">80 MAD</span> 
+                                    <span class="price-amount" style="font-size: 1.8rem;">60 MAD</span>
+                                </p>
+                                <span class="promo-badge">-25%</span>
+                            </div>
+                        </div>
+                        <p style="margin-top: 15px; color: #e74c3c; font-weight: bold;">🎉 Offre valable uniquement le vendredi ! 🎉</p>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 30px;">* Gratuit pour les moins de 3 ans. Groupes (+10 pers.) : tarif sur devis.</p>
+            </div>
+
+            <!-- CONSERVATION -->
+            <div id="conservation" class="page">
+                <h2 style="color: var(--forest); text-align: center; margin-bottom: 45px;">Conservation & Éthique</h2>
+                <div class="grid-3">
+                    <div class="card-premium">
+                        <div class="card-content">
+                            <h3>📊 Programmes EEP</h3><p>Membre actif des programmes européens pour espèces menacées.</p>
+                        </div>
+                    </div>
+                    <div class="card-premium">
+                        <div class="card-content">
+                            <h3>🎓 Éducation</h3><p>Plus de 5000 scolaires sensibilisés chaque année.</p>
+                        </div>
+                    </div>
+                    <div class="card-premium">
+                        <div class="card-content"><h3>🌱 Reforestation</h3><p>Plantation de 2000 arbres par an au Maroc.</p>
+                        </div>
+                    </div>
+                    <div class="card-premium">
+                        <div class="card-content">
+                            <h3>♻️ Zéro Déchet</h3><p>Politique éco-responsable : gobelets consignés, énergie solaire.</p>
+                        </div>
+                    </div>
+                    <div class="card-premium">
+                        <div class="card-content">
+                            <h3>🔬 Recherche</h3><p>Partenariat avec l'Université Cadi Ayyad.</p>
+                        </div>
+                    </div>
+                    <div class="card-premium">
+                        <div class="card-content">
+                            <h3>🏅 Certification</h3><p>Label "Bien-être Animal" niveau Excellence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ESPACE ENFANT -->
+            <div id="kids" class="page">
+                <h2 style="color: var(--forest); text-align: center; margin-bottom: 45px;">L'univers des Petits Explorateurs</h2>
+                <div class="grid-3">
+                    <div class="card-premium">
+                        <img class="card-img" src="Capture d'écran 2026-04-22 224232.png" alt="Maquillage">
+                        <div class="card-content">
+                            <h3>🎨 Atelier Maquillage</h3><p>Deviens ton animal préféré !</p>
+                        </div>
+                    </div>
+                    <div class="card-premium">
+                        <img class="card-img" src="Capture d'écran 2026-04-22 224017.png" alt="Coloriage">
+                        <div class="card-content">
+                            <h3>🖍️ Coloriages Géants</h3><p>Crée ta légende animale.</p>
+                        </div>
+                    </div>
+                    <div class="card-premium">
+                        <img class="card-img" src="Capture d'écran 2026-04-22 223649.png" alt="Aire jeux">
+                        <div class="card-content">
+                            <h3>🏰 Aire "Savane Aventure"</h3><p>Toboggans, filets, cabanes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACT -->
+            <div id="contact" class="page">
+                <h2 style="color: var(--forest); text-align: center; margin-bottom: 45px;">Nous Contacter</h2>
+                <div class="grid-2">
+                    <div class="card-premium">
+                        <div class="card-content contact-details">
+                            <h3>📍 Infos pratiques</h3>
+                            <p><strong>Adresse :</strong> Autoroute A3, sortie 27, Marrakech, Maroc</p>
+                            <p><strong>📞 Téléphone :</strong> +212 6 42 16 11 79</p>
+                            <p><strong>💬 WhatsApp :</strong> +212 6 07 62 37 57</p>
+                            <p><strong>✉️ Email :</strong> <a href="mailto:ORAKIA2026@gmail.com">ORAKIA2026@gmail.com</a></p>
+                            <p><strong>🕒 Horaires :</strong> 9h-18h (lun-jeu) / 9h-19h30 (ven-dim)</p>
+                            <h3 style="margin-top: 25px;">📱 Suivez-nous</h3>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon">📷</a>
+                                <a href="#" class="social-icon">📘</a>
+                                <a href="#" class="social-icon">💬</a>
+                            </div>
+                            <p style="margin-top: 10px;"><strong>Instagram :</strong> @ORAKIA.office</p>
+                            <p><strong>Facebook :</strong> @ORAKIA.office</p>
+                        </div>
+                    </div>
+                    <div class="form-modern">
+                        <h3>Formulaire de contact</h3>
+                            <form id="expertForm">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Nom complet" required>
+                                </div>
+                                <div class="input-group">
+                                    <input type="email" placeholder="Email" required>
+                                </div>
+                                <div class="input-group">
+                                    <input type="tel" placeholder="Téléphone">
+                                </div>
+                                <div class="input-group">
+                                    <select>
+                                        <option>Demande d'information</option>
+                                        <option>Réservation</option>
+                                        <option>Groupe</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <textarea rows="4" placeholder="Votre message..."></textarea>
+                                </div>
+                                <button type="submit" class="btn">Envoyer le message ✉️</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer-premium">
+            <div class="footer-inner">
+                <div>
+                    <h4>ORAKIA</h4><p>Sanctuaire des légendes animales depuis 2015. Excellence et passion pour la faune.</p>
+                </div>
+                <div>
+                    <h4>Liens rapides</h4><p>Mentions légales<br>CGV<br>Plan du zoo<br>Recrutement</p>
+                </div>
+                <div>
+                    <h4>Newsletter</h4><p>Recevez nos offres</p>
+                    <input type="email" placeholder="Votre email" style="padding: 10px; border-radius: 12px; border: none; width: 100%;">
+                </div>
+            </div>
+            <div class="copyright">© 2026 ORAKIA Wildlife Sanctuary - Tous droits réservés</div>
+        </footer>
+
+        <div class="fab" onclick="navigateTo('contact')"></div>
+        
+        <script>
+            function navigateTo(pageId){
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active-page'));
+                document.getElementById(pageId).classList.add('active-page');
+                document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                document.getElementById('navLinks')?.classList.remove('active');
+            }
+
+            const burger = document.getElementById('burgerBtn');
+            const navLinks = document.getElementById('navLinks');
+            burger?.addEventListener('click', () => navLinks.classList.toggle('active'));
+        
+            window.addEventListener('scroll', () => {
+                document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);}
+            );
+
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => observer.observe(el));
+
+            document.getElementById('expertForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('✅ Message envoyé ! Notre équipe vous répond sous 24h.');
+                e.target.reset();
+            });
+        </script>
+    </body>
+</html>
