@@ -161,10 +161,15 @@
             .page{
                 display: none; 
                 animation: fadeIn 0.4s ease;
+                opacity: 0;
+                transform: translateY(10px);
+                transition: 0.3s;
             }
 
             .page.active{
                 display: block;
+                opacity: 1;
+                transform: translateY(0);
             }
 
             @keyframes fadeIn{
