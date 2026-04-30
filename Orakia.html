@@ -935,34 +935,397 @@
             <p style="margin-top: 0.5rem; font-size: 0.9rem;" data-i18n="footer_slogan">Protecting wildlife, inspiring wonder.</p>
         </footer>
         
-        <script>
-            function navigateTo(pageId){
-                document.querySelectorAll('.page').forEach(page => page.classList.remove('active-page'));
-                document.getElementById(pageId).classList.add('active-page');
-                document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                document.getElementById('navLinks')?.classList.remove('active');
+        <script id="main-js">
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            /* === nav page === */
+            const navLinks = document.querySelectorAll(".nav-link");
+            const pages = document.querySelectorAll(".page");
+
+            function showPage(pageName) {
+                pages.forEach(p => p.classList.remove("active"));
+                navLinks.forEach(l => l.classList.remove("active"));
+
+                const page = document.getElementById(pageName + "-page");
+                if (page) page.classList.add("active");
+
+                const activeLink = document.querySelector(`[data-page="${pageName}"]`);
+                if (activeLink) activeLink.classList.add("active");
+
+                window.scrollTo(0, 0);
             }
 
-            const burger = document.getElementById('burgerBtn');
-            const navLinks = document.getElementById('navLinks');
-            burger?.addEventListener('click', () => navLinks.classList.toggle('active'));
-        
-            window.addEventListener('scroll', () => {
-                document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);}
-            );
-
-            const revealElements = document.querySelectorAll('.reveal');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
-            }, { threshold: 0.1 });
-            revealElements.forEach(el => observer.observe(el));
-
-            document.getElementById('expertForm')?.addEventListener('submit', (e) => {
+            navLinks.forEach(link => {
+            link.addEventListener("click", (e) => {
                 e.preventDefault();
-                alert('✅ Message envoyé ! Notre équipe vous répond sous 24h.');
-                e.target.reset();
+                const page = link.dataset.page;
+                showPage(page);
+                });
             });
+
+            // Discover button
+            window.navigateTo = showPage;
+            window.showPage = showPage;
+
+            /* === Humburger === */
+            const menuToggle = document.getElementById("menuToggle");
+            const nav = document.getElementById("navLinks");
+
+            menuToggle.addEventListener("click", () => {
+                nav.classList.toggle("active");
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener("click", () => {
+                    nav.classList.remove("active");
+                });
+            });
+
+            /* === Lang === */
+            const translations = {
+                en: {
+                    /* === nav page === */
+                    nav_home: "Home",
+                    nav_animals: "Animals",
+                    nav_activities: "Activities",
+                    nav_quiz: "Quiz",
+                    nav_tickets: "Tickets",
+                    nav_kids: "Kids area",
+                    nav_infos: "Infos & Contact",
+
+                    /* === hero === */
+                    hero_title: "Welcome to ORAKIA",
+                    hero_subtitle: "The sanctuary of animal legends",
+                    hero_desc: "Where nature tells its stories",
+                    discover_btn: "Discover",
+
+                    /* === home card === */
+                    animals_title: "🦁 17 animal species",
+                    animals_desc: "Discover our animals from 5 continents",
+                    continents_title: "🌍 5 continents",
+                    continents_desc: "Africa, Asia, America, Europe, Oceania",
+                    shows_title: "🐧 Immersive shows",
+                    shows_desc: "Daily meals and entertainment",
+
+                    /* === animals === */
+                    lion_title: "🦁 African Lion",
+                    lion_desc: "King of the savannah",
+                    elephant_title: "🐘 Elephant",
+                    elephant_desc: "The giant of Africa",
+                    giraffe_title: "🦒 Giraffe",
+                    giraffe_desc: "The tallest animal",
+                    tiger_title: "🐅 Bengal Tiger",
+                    tiger_desc: "Majestic feline",
+                    penguin_title: "🐧 Royal penguin",
+                    penguin_desc: "Fantastic diver",
+                    flamingo_title: "🦩 Pink flamingo",
+                    flamingo_desc: "Elegance in pink",
+                    gorilla_title: "🦍 Gorilla",
+                    gorilla_desc: "Power and intelligence",
+                    zebra_title: "🦓 Zebra",
+                    zebra_desc: "Unique stripes",
+                    rhino_title: "🦏 Rhinoceros",
+                    rhino_desc: "Peaceful giant",
+                    panda_title: "🐼 Red panda",
+                    panda_desc: "Cute and rare",
+                    wolf_title: "🐺 Gray wolf",
+                    wolf_desc: "Living legend",
+                    meerkat_title: "🦡 Meerkat",
+                    meerkat_desc: "Desert sentinel",
+                    otter_title: "🦦 Otter",
+                    otter_desc: "Joyful and playful",
+                    bear_title: "🐻 Brown bear",
+                    bear_desc: "Lord of the forest",
+                    kangaroo_title: "🦘 Kangaroo",
+                    kangaroo_desc: "Oceania jumper",
+                    panther_title: "🐆 Panther",
+                    panther_desc: "Mystery and elegance",
+                    lynx_title: "🐱 Lynx",
+                    lynx_desc: "Piercing gaze",
+
+                    /* === activities === */
+                    feeding_title: "🦁 Feeding lions",
+                    feeding_desc: "Every day at 16:00",
+                    parade_title: "🦩 Birds parade",
+                    parade_desc: "Free flight at 11:00 and 15:00",
+                    meeting_title: "🦦 Meeting with otters",
+                    meeting_desc: "At 14:00 with reservation",
+                    workshop_title: "🦍 Zookeeper workshop",
+                    workshop_desc: "For children, Wednesday at 10:00",
+
+                    /* QUIZ */
+                    q1: "What activity do you like?",
+                    q1_a1: "Sleeping in the sun",
+                    q1_a2: "Playing in water",
+                    q1_a3: "Climbing trees",
+                    q1_a4: "Sliding on ice",
+                    q1_btn: "Next question",
+
+                    q2: "What meal do you like?",
+                    q2_a1: "Steak",
+                    q2_a2: "Vegetables",
+                    q2_a3: "Fruits",
+                    q2_a4: "Fish",
+                    q2_btn: "Next question",
+
+                    q3: "Where do you feel best?",
+                    q3_a1: "In the savannah",
+                    q3_a2: "Near a lake",
+                    q3_a3: "In the jungle",
+                    q3_a4: "On the ice",
+                    q3_btn: "See my animal",
+
+                    btn: "Try again",
+
+                    /* === tickets page === */
+                    ticket_type: "Ticket type",
+                    price: "Price",
+                    adult: "Adult",
+                    child: "Children (under 7)",
+
+                    /* === playground page === */
+                    kids1_title: "Petting Zoo",
+                    kids1_desc: "Friendly animals kids can feed safely",
+                    kids2_title: "Adventure Playground",
+                    kids2_desc: "Slides, climbing and water games",
+                    kids3_title: "Young Ranger School",
+                    kids3_desc: "Learn about wildlife",
+
+                    /* === contact page === */
+                    infos_title: "Infos & Contacts",
+                    infos_subtitle: "We'd love to hear from you",
+                    form_name: "Full Name",
+                    form_email: "Email Address",
+                    form_subject: "Subject",
+                    form_message: "Message",
+                    form_submit: "Send Message",
+
+                    opt_general: "General Inquiry",
+                    opt_tickets: "Tickets & Bookings",
+                    opt_education: "School Programs",
+                    opt_donation: "Donations",
+                    opt_feedback: "Feedback",
+
+                    info_phone: "Phone",
+                    info_email: "Email",
+
+                    /* === footer === */
+                    footer_rights: "All rights reserved.",
+                    footer_slogan: "Protecting wildlife, inspiring wonder."
+                },
+
+                fr: {
+                    nav_home: "Accueil",
+                    nav_animals: "Animaux",
+                    nav_activities: "Activités",
+                    nav_quiz: "Quiz",
+                    nav_tickets: "Billets",
+                    nav_kids: "Espace enfants",
+                    nav_infos: "Infos & Contact",
+
+                    hero_title: "Bienvenue à ORAKIA",
+                    hero_subtitle: "Le sanctuaire des légendes animales",
+                    hero_desc: "Là où la nature raconte ses histoires",
+                    discover_btn: "Découvrir",
+
+                    animals_title: "🦁 17 espèces animales",
+                    animals_desc: "Animaux des 5 continents",
+                    continents_title: "🌍 5 continents",
+                    continents_desc: "Afrique, Asie, Amérique, Europe, Océanie",
+                    shows_title: "🐧 Spectacles immersifs",
+                    shows_desc: "Animations quotidiennes",
+
+                    lion_title: "🦁 Lion africain",
+                    lion_desc: "Roi de la savane",
+                    elephant_title: "🐘 Éléphant",
+                    elephant_desc: "Géant d'Afrique",
+                    giraffe_title: "🦒 Giraffe",
+                    giraffe_desc: "Animal le plus grand",
+                    tiger_title: "🐅 Tigre du Bengale",
+                    tiger_desc: "Félin majestueux",
+                    penguin_title: "🐧 Manchot royal",
+                    penguin_desc: "Excellent plongeur",
+                    flamingo_title: "🦩 Flamant rose",
+                    flamingo_desc: "Élégance en rose",
+                    gorilla_title: "🦍 Gorille",
+                    gorilla_desc: "Force et intelligence",
+                    zebra_title: "🦓 Zèbre",
+                    zebra_desc: "Rayures uniques",
+                    rhino_title: "🦏 Rhinocéros",
+                    rhino_desc: "Géant paisible",
+                    panda_title: "🐼 Panda roux",
+                    panda_desc: "Rare et adorable",
+                    wolf_title: "🐺 Loup gris",
+                    wolf_desc: "Légende vivante",
+                    meerkat_title: "🦡 Suricate",
+                    meerkat_desc: "Sentinelle du désert",
+                    otter_title: "🦦 Loutre",
+                    otter_desc: "Joyeuse et joueuse",
+                    bear_title: "🐻 Ours brun",
+                    bear_desc: "Seigneur de la forêt",
+                    kangaroo_title: "🦘 Kangourou",
+                    kangaroo_desc: "Sauteur d’Océanie",
+                    panther_title: "🐆 Panthère",
+                    panther_desc: "Mystère et élégance",
+                    lynx_title: "🐱 Lynx",
+                    lynx_desc: "Regard perçant",
+ 
+                    feeding_title: "🦁 Nourrissage des lions",
+                    feeding_desc: "Tous les jours à 16h",
+                    parade_title: "🦩 Parade des oiseaux",
+                    parade_desc: "Vol libre à 11h et 15h",
+                    meeting_title: "🦦 Rencontre avec les loutres",
+                    meeting_desc: "À 14h sur réservation",
+                    workshop_title: "🦍 Atelier soigneur",
+                    workshop_desc: "Pour enfants, mercredi à 10h",
+
+                    q1: "Quelle activité aimes-tu ?",
+                    q1_a1: "Dormir au soleil",
+                    q1_a2: "Jouer dans l’eau",
+                    q1_a3: "Grimper aux arbres",
+                    q1_a4: "Glisser sur la glace",
+                    q1_btn: "Question suivante",
+
+                    q2: "Quel repas préfères-tu ?",
+                    q2_a1: "Steak",
+                    q2_a2: "Légumes",
+                    q2_a3: "Fruits",
+                    q2_a4: "Poisson",
+                    q2_btn: "Question suivante",
+
+                    q3: "Où te sens-tu le mieux ?",
+                    q3_a1: "Dans la savane",
+                    q3_a2: "Au bord d’un lac",
+                    q3_a3: "Dans la jungle",
+                    q3_a4: "Sur la banquise",
+                    q3_btn: "Voir mon animal",
+
+                    btn: "Réessayer une autre fois",
+
+                    ticket_type: "Type de billet",
+                    price: "Prix",
+                    adult: "Adulte",
+                    child: "Enfant (-7 ans)",
+
+                    kids1_title: "Mini ferme",
+                    kids1_desc: "Animaux doux à caresser",
+                    kids2_title: "Aire de jeux",
+                    kids2_desc: "Toboggans et jeux",
+                    kids3_title: "École des rangers",
+                    kids3_desc: "Apprendre la nature",
+
+                    infos_title: "Infos & Contacts",
+                    infos_subtitle: "Contactez-nous",
+                    form_name: "Nom complet",
+                    form_email: "Email",
+                    form_subject: "Sujet",
+                    form_message: "Message",
+                    form_submit: "Envoyer",
+
+                    opt_general: "Information",
+                    opt_tickets: "Billetterie",
+                    opt_education: "Écoles",
+                    opt_donation: "Dons",
+                    opt_feedback: "Avis",
+
+                    info_phone: "Téléphone",
+                    info_email: "Email",
+
+                    footer_rights: "Tous droits réservés.",
+                    footer_slogan: "Protéger la faune, inspirer."
+                }
+            };
+
+            window.changeLanguage = function (lang) {
+                document.querySelectorAll("[data-i18n]").forEach(el => {
+                    const key = el.dataset.i18n;
+                    if (translations[lang] && translations[lang][key]) {
+                        el.textContent = translations[lang][key];
+                    }
+                });
+
+                document.querySelectorAll(".lang-btn").forEach(btn => {
+                    btn.classList.remove("active");
+                });
+
+                document.querySelector(`[data-lang="${lang}"]`).classList.add("active");
+            };
+
+            /* === Quiz === */
+            window.nextQuizStep2 = function () {
+                if (!document.querySelector('input[name="q1"]:checked')) {
+                    alert("Please select an answer");
+                    return;
+                }
+                document.getElementById("quizStep1").style.display = "none";
+                document.getElementById("quizStep2").style.display = "block";
+            };
+
+            window.nextQuizStep3 = function () {
+                if (!document.querySelector('input[name="q2"]:checked')) {
+                    alert("Please select an answer");
+                    return;
+                }
+                document.getElementById("quizStep2").style.display = "none";
+                document.getElementById("quizStep3").style.display = "block";
+            };
+
+            window.showQuizResult = function () {
+                const answers = [
+                    document.querySelector('input[name="q1"]:checked')?.value,
+                    document.querySelector('input[name="q2"]:checked')?.value,
+                    document.querySelector('input[name="q3"]:checked')?.value
+                ];
+
+                if (answers.includes(undefined)) {
+                    alert("Please answer all questions");
+                    return;
+                }
+
+                const counts = {};
+                answers.forEach(a => counts[a] = (counts[a] || 0) + 1);
+
+                const result = Object.keys(counts).reduce((a, b) =>
+                    counts[a] > counts[b] ? a : b
+                );
+
+                const resultMap = {
+                    lion: ["🦁 Lion", "Strong and confident leader"],
+                    elephant: ["🐘 Elephant", "Wise and calm"],
+                    monkey: ["🐒 Monkey", "Playful and curious"],
+                    pingouin: ["🐧 Penguin", "Cool and unique"]
+                };
+
+                document.getElementById("quizStep3").style.display = "none";
+                document.getElementById("quizResult").style.display = "block";
+
+                document.getElementById("resultAnimal").textContent = resultMap[result][0];
+                document.getElementById("resultDesc").textContent = resultMap[result][1];
+            };
+
+            window.restartQuiz = function () {
+                document.querySelectorAll("input[type=radio]").forEach(i => i.checked = false);
+
+                document.getElementById("quizResult").style.display = "none";
+                document.getElementById("quizStep1").style.display = "block";
+            };
+
+            /* === Contact === */
+            window.handleContactSubmit = function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById("contactName").value;
+                const email = document.getElementById("contactEmail").value;
+
+                if (!name || !email) {
+                    alert("Please fill all required fields");
+                    return;
+                }
+
+                alert("Message sent successfully!");
+                document.getElementById("contactForm").reset();
+            };
+        });
         </script>
     </body>
 </html>
