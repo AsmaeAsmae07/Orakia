@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width= device-width, initial-scale=1.0, user-scalable=yes">
         <title>ORAKIA - Le sanctuaire des légendes animales | ZOO</title>
         <meta name="description" content="ORAKIA - Le sanctuaire des légendes animales - parc animalier unique avec 17 espèces venues des 5 continents. Une aventure immersive au cœur de la biodiversité.">
+        <link rel="stylesheet" href= "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" >
         <style>
             *{
                 margin: 0;
@@ -14,14 +15,14 @@
 
             :root{
                 --primary: rgb(10, 154, 10);
-                --primary-light: rgba(11, 223, 11);
+                --primary-light: rgb(11, 223, 11);
                 --secondary: rgba(255, 217, 0, 0.621);
                 --secondary-light: rgba(255, 217, 0, 0.963);
                 --secondary-dark: rgba(255, 217, 0, 0.326);
                 --accent: green;
                 --accent-light: rgb(0, 201, 0);
                 --white: white;
-                --light: rgba(0, 255, 94);
+                --light: rgb(158, 255, 194);
                 --dark: rgba(12, 0, 0, 0.486);
                 --gold: rgba(255, 217, 0, 0.621);
                 --gray: gray;
@@ -65,7 +66,7 @@
             /* === barre de nav === */
             .navbar{
                 display: flex;
-                justify-content: space-between;  /* LOGO à gauche, reste à droite */
+                justify-content: space-between;  /* === LOGO à gauche, reste à droite === */
                 align-items: center;
                 padding: 1rem 5%;
                 max-width: 1400px;
@@ -81,6 +82,7 @@
                 font-weight: bold;
                 padding-left: 40px;
                 letter-spacing: -0.5px;
+                color: var(--primary);
             }
             
             /* === menu de nav === */
@@ -89,7 +91,7 @@
                 list-style: none;
             }
 
-            .nav-links a{
+            .nav-links li a{
                 color: var(--gold);
                 text-decoration: none;
                 font-size: 10px;
@@ -99,8 +101,14 @@
                 cursor: pointer;
             }
 
-            .nav-links a:hover, .nav-links a:active{
+            .nav-links li a:hover{
                 background-color: var(--secondary);
+            }
+
+            .nav-links li a.active{
+                color: var(--secondary);
+                font-weight: 600;
+                border-bottom: 2px solid var(--secondary);
             }
             
             .menu-toggle{
@@ -147,6 +155,21 @@
 
             .lang-btn:hover:not(.active){
                 background: rgba(233, 179, 95, 0.2);
+            }
+
+            /* === pages SPA === */
+            .page{
+                display: none; 
+                animation: fadeIn 0.4s ease;
+            }
+
+            .page.active{
+                display: block;
+            }
+
+            @keyframes fadeIn{
+                from{opacity: 0;}
+                to{opacity: 1;}
             }
 
             /* === hero === */
@@ -224,18 +247,18 @@
             .grid-3{
                 display: grid;
                 gap: 2rem;
-                grid-template-columns: 1fr;  /* mobile : 1 colonne */
+                grid-template-columns: 1fr;           /* === mobile : 1 colonne === */
             }
 
             @media (min-width: 768px){
                 .grid-3{
-                    grid-template-columns: repeat(2, 1fr);  /* tablette : 2 colonnes */
+                    grid-template-columns: repeat(2, 1fr);  /* === tablette : 2 colonnes === */
                 }
             }
 
             @media (min-width: 1024px){
                 .grid-3{
-                    grid-template-columns: repeat(3, 1fr);  /* desktop : 3 colonnes */
+                    grid-template-columns: repeat(3, 1fr);  /* === desktop : 3 colonnes === */
                 }
             }
 
@@ -357,12 +380,54 @@
 
             .quiz-question{
                 margin-bottom: 1.5rem;
+                font-weight: 600;
+                color: var(--primary);
             }
             
             .quiz-options label{
                 display: block;
                 margin: 0.5rem 0;
                 cursor: pointer;
+            }
+
+            .quiz-question label:hover{
+                background: rgba(10, 154, 10, 0.1)
+            }
+
+            /* === price table === */
+            .price-table{
+                width: 100%;
+                max-width: 800px;
+                margin: 0% auto;
+                background: var(--white);
+                color: black;
+                border-radius: 24px;
+                overflow: hidden;
+                box-shadow: var(--shadow);
+            }
+
+            .price-table table{
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .price-table th{
+                background: var(--primary);
+                color: white;
+                font-family: 'Playfair Display', serif;
+                padding: 1.2rem;
+                text-align: left;
+                border-bottom: 1px solid #eee;
+            }
+
+            .price-table td{
+                padding: 1.2rem;
+                text-align: left;
+                border-bottom: 1px solid #eee;
+            }
+
+            .price-table tr:hover{
+                background: rgba(10, 154, 10, 0.05);
             }
 
             /* === footer === */
@@ -388,28 +453,7 @@
 
             .social-icons a:hover{
                 color: var(--secondary);
-                transform: translateY(-3px);      /* monte de 3px */
-            }
-
-            /* === pages SPA === */
-            .page{
-                display: none; 
-                animation: fadeIn 0.4s ease;
-            }
-
-            .active-page{
-                display: block;
-            }
-
-            @keyframes fadeIn{
-                from{opacity: 0;}
-                to{opacity: 1;}
-            }
-
-            .nav-link.active{
-                color: var(--secondary);
-                font-weight: 600;
-                border-bottom: 2px solid var(--secondary);
+                transform: translateY(-3px);      /* === monte de 3px === */
             }
 
             /* === responsive === */
