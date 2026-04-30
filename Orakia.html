@@ -745,8 +745,8 @@
         <div class="page" id="quiz-page">
             <section class="hero">
                 <div class="hero-content">
-                    <h1 class="hero-title">Quiz</h1>
-                    <p>What animal are you?</p>
+                    <h1 class="hero-title" data-i18n="hero_title">Quiz</h1>
+                    <p data-i18n="hero_desc">What animal are you?</p>
                 </div>
             </section>
 
@@ -754,43 +754,43 @@
                 <div class="container">
                     <div class="quiz-container" id="quizContainer">
                         <div id="quizStep1">
-                            <div class="quiz-question">Question: What activity do you like?</div>
+                            <div class="quiz-question" data-i18n="q1">Question: What activity do you like?</div>
                             <div class="quiz-options">
-                                <label><input type="radio" name="q1" value="lion">Sleeping in the sun</label>
-                                <label><input type="radio" name="q1" value="elephant">Play in the water</label>
-                                <label><input type="radio" name="q1" value="monkey">Climbing trees</label>
-                                <label><input type="radio" name="q1" value="pingouin">Sliding on the ice</label>
+                                <label><input type="radio" name="q1" value="lion"><span data-i18n="q1_a1">Sleeping in the sun</span></label>
+                                <label><input type="radio" name="q1" value="elephant"><span data-i18n="q1_a2">Play in the water</span></label>
+                                <label><input type="radio" name="q1" value="monkey"><span data-i18n="q1_a3">Climbing trees</span></label>
+                                <label><input type="radio" name="q1" value="pingouin"><span data-i18n="q1_a4">Sliding on the ice</span></label>
                             </div>
-                            <button class="btn btn-primary" onclick="nextQuizStep2()" style="margin-top: 1rem;">Next Question</button>
+                            <button class="btn btn-primary" data-i18n="q1_btn" onclick="nextQuizStep2()" style="margin-top: 1rem;">Next Question</button>
                         </div>
 
                         <div id="quizStep2" style="display: none;">
-                            <div class="quiz-question">Question: What meal do you like?</div>
+                            <div class="quiz-question" data-i18n="q2">Question: What meal do you like?</div>
                             <div class="quiz-options">
-                                <label><input type="radio" name="q2" value="lion">Steak</label>
-                                <label><input type="radio" name="q2" value="elephant">Vegetables</label>
-                                <label><input type="radio" name="q2" value="monkey">Fruits</label>
-                                <label><input type="radio" name="q2" value="pingouin">Fish</label>
+                                <label><input type="radio" name="q2" value="lion"><span data-i18n="q2_a1">Steak</span></label>
+                                <label><input type="radio" name="q2" value="elephant"><span data-i18n="q2_a2">Vegetables</span></label>
+                                <label><input type="radio" name="q2" value="monkey"><span data-i18n="q2_a3">Fruits</span></label>
+                                <label><input type="radio" name="q2" value="pingouin"><span data-i18n="q2_a4">Fish</span></label>
                             </div>
-                            <button class="btn btn-primary" onclick="nextQuizStep3()" style="margin-top: 1rem;">Next Question</button>
+                            <button class="btn btn-primary" data-i18n="q2_btn" onclick="nextQuizStep3()" style="margin-top: 1rem;">Next Question</button>
                         </div>
 
                         <div id="quizStep3" style="display: none;">
-                            <div class="quiz-question">Question: Where do you feel better?</div>
+                            <div class="quiz-question" data-i18n="q3">Question: Where do you feel better?</div>
                             <div class="quiz-options">
-                                <label><input type="radio" name="q3" value="lion">In the savannah</label>
-                                <label><input type="radio" name="q3" value="elephant">On the shore of a lake</label>
-                                <label><input type="radio" name="q3" value="monkey">In the jungle</label>
-                                <label><input type="radio" name="q3" value="pingouin">On the ice floe</label>
+                                <label><input type="radio" name="q3" value="lion"><span data-i18n="q3_a1">In the savannah</span></label>
+                                <label><input type="radio" name="q3" value="elephant"><span data-i18n="q3_a2">On the shore of a lake</span></label>
+                                <label><input type="radio" name="q3" value="monkey"><span data-i18n="q3_a3">In the jungle</span></label>
+                                <label><input type="radio" name="q3" value="pingouin"><span data-i18n="q3_a4">On the ice floe</span></label>
                             </div>
-                            <button class="btn btn-primary" onclick="showQuizResult()">See my animal</button>
+                            <button class="btn btn-primary" data-i18n="q3_btn" onclick="showQuizResult()">See my animal</button>
                         </div>
 
                         <div id="quizResult" style="display: none; text-align: center; padding: 2rem;">
                             <h3 style="color: var(--primary); font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1rem;">Your spirit animal is:</h3>
                             <div id="resultAnimal" style="font-size: 3rem; margin: 1rem 0;"></div>
                             <p id="resultDesc" style="font-size: 1.2rem; color: var(--gray);"></p>
-                            <button class="btn btn-primary" onclick="restartQuiz()" style="margin-top: 2rem;">Try Again</button>
+                            <button class="btn btn-primary" data-i18n="btn" onclick="restartQuiz()" style="margin-top: 2rem;">Try Again</button>
                         </div>
                     </div>
                 </div>
