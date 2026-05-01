@@ -33,7 +33,7 @@
                 --shadow: 0 15px 35px rgba(0,0,0,0,1);
                 --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
                 --transition: all 0.3s ease;
-                --header-height: 80%;
+                --header-height: 80px;
             }
 
             body{
@@ -48,14 +48,14 @@
                 font-family: 'Playfair Display', serif;
             }
 
-            /* === header and nav === */
+            /* === header === */
             header{
                 background: var(--white);
                 backdrop-filter: blur(10px);
                 height: var(--header-height);
                 display: flex;
                 justify-content: space-between;
-                align-items: center; 
+                align-items: center;
                 padding: 0 5%;
                 position: sticky;
                 top: 0%;
@@ -63,40 +63,62 @@
                 box-shadow: var(--shadow);
             }
 
-            /* === barre de nav === */
-            .navbar{
+            /* === navbar === */
+            .navbar {
                 display: flex;
-                justify-content: space-between;  /* === LOGO à gauche, reste à droite === */
+                justify-content: space-between;
                 align-items: center;
-                padding: 1rem 5%;
+                width: 100%;                  /* === Take full width === */
                 max-width: 1400px;
                 margin: 0 auto;
-                flex-wrap: wrap;
-                gap: 1rem;
+                padding: 0;                   /* === Remove extra padding, let header handle it === */
+                flex-wrap: nowrap;            /* === Prevent wrapping on desktop === */
+                gap: 0;
             }
 
             /* === logo === */
-            .logo{
+            .logo {
                 display: flex;
-                font-size: 16px;
+                font-size: 30px;
                 font-weight: bold;
-                padding-left: 40px;
+                padding-left: 0;
                 letter-spacing: -0.5px;
                 color: var(--primary);
-            }
-            
-            /* === menu de nav === */
-            .nav-links{
-                display: flex;
-                list-style: none;
+                margin-right: auto;            /* === Push everything else to the right === */
             }
 
-            .nav-links li a{
+            /* === language selector === */
+            .language-selector {
+                display: flex;
+                gap: 0.5rem;
+                margin-left: auto;             /* === Push to the extreme right === */
+                order: 99;                     /* === Ensure it stays last === */
+            }
+
+            /* === menu toggle (mobile) === */
+            .menu-toggle {
+                display: none;
+                font-size: 1.8rem;
+                cursor: pointer;
+                color: var(--primary);
+                order: 100;                   /* === Always last, even on mobile === */
+                margin-left: 1rem;
+            }
+
+            /* === nav links === */
+            .nav-links {
+                display: flex;
+                list-style: none;
+                margin: 0 auto;               /* === Center the navigation === */
+                gap: 0;
+            }
+
+            .nav-links li a {
                 color: var(--gold);
                 text-decoration: none;
-                font-size: 10px;
+                font-size: 13px;
                 font-weight: 500;
-                padding-right: 40px;
+                padding: 0.5rem 1rem;
                 transition: var(--transition);
                 cursor: pointer;
             }
@@ -462,22 +484,23 @@
             }
 
             /* === responsive === */
-            @media (max-width: 768px){
-                .menu-toggle{ 
-                    display: block;        /* === Visible uniquement sur mobile === */
+            @media (max-width: 768px) {
+                .navbar {
+                    flex-wrap: wrap;
+                }
+                .menu-toggle {
+                    display: block;
                     order: 3;
                 }
-                .language-selector{
+                .language-selector {
                     margin-left: auto;
                     order: 2;
                 }
-                .logo{
+                .logo {
                     order: 1;
+                    margin-right: 0;
                 }
-                .navbar{
-                    flex-wrap: wrap;
-                }
-                .nav-links{
+                .nav-links {
                     position: fixed;
                     top: 70px;
                     left: -100%;
@@ -489,9 +512,10 @@
                     gap: 1.5rem;
                     padding: 2rem 0;
                     z-index: 999;
+                    margin: 0;
                 }
-                .nav-links.active{ 
-                    left: 0; 
+                .nav-links.active {
+                    left: 0;
                 }
                 .hero-title{ 
                     font-size: 2.5rem; 
@@ -508,13 +532,13 @@
                 <div class="logo">ORAKIA</div>
 
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="#" class="nav-link active" data-page="home" data-i18n="nav_home">home</a></li>
-                    <li><a href="#" class="nav-link" data-page="animals" data-i18n="nav_animals">Animals</a></li>
-                    <li><a href="#" class="nav-link" data-page="activites" data-i18n="nav_activities">Activities</a></li>
-                    <li><a href="#" class="nav-link" data-page="quiz" data-i18n="nav_quiz">Quiz</a></li>
-                    <li><a href="#" class="nav-link" data-page="tickets" data-i18n="nav_tickets">Tickets</a></li>
-                    <li><a href="#" class="nav-link" data-page="playground" data-i18n="nav_kids">Kids area</a></li>
-                    <li><a href="#" class="nav-link" data-page="about" data-i18n="nav_infos">Infos & Contact</a></li>
+                    <li><a href="#" class="nav-link active" data-page="home" data-i18n="nav_home"><b>home</b></a></li>
+                    <li><a href="#" class="nav-link" data-page="animals" data-i18n="nav_animals"><b>Animals</b></a></li>
+                    <li><a href="#" class="nav-link" data-page="activites" data-i18n="nav_activities"><b>Activities</b></a></li>
+                    <li><a href="#" class="nav-link" data-page="quiz" data-i18n="nav_quiz"><b>Quiz</b></a></li>
+                    <li><a href="#" class="nav-link" data-page="tickets" data-i18n="nav_tickets"><b>Tickets</b></a></li>
+                    <li><a href="#" class="nav-link" data-page="playground" data-i18n="nav_kids"><b>Kids area</b></a></li>
+                    <li><a href="#" class="nav-link" data-page="about" data-i18n="nav_infos"><b>Infos & Contact</b></a></li>
                 </ul>
 
                 <div class="language-selector">
@@ -863,7 +887,7 @@
             </section>
         </div>
 
-       <!-- Infos & Contact -->
+        <!-- Infos & Contact -->
         <div class="page" id="about-page">
             <section class="hero">
                 <div class="hero-content">
@@ -916,7 +940,7 @@
         <footer>
             <div class="social-icons">
                 <a href="https://facebook.com" target="_blank" aria-label="Facebook">
-                    <svg width="24" height="24" fill="blue" viewBox="0 0 24 24">        <!-- image format using mathematical shapes -->
+                    <svg width="24" height="24" fill="blue" viewBox="0 0 24 24">
                         <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.7v-2.9h2.7V9.4c0-2.7 1.6-4.2 4-4.2 1.2 0 2.4.2 2.4.2v2.6h-1.4c-1.4 0-1.8.9-1.8 1.7v2h3.1l-.5 2.9h-2.6v7A10 10 0 0 0 22 12z"/>
                     </svg>
                 </a>
@@ -934,7 +958,7 @@
             <p> 2026 ORAKIA Zoo. <span data-i18n="footer_rights">All rights reserved.</span></p>
             <p style="margin-top: 0.5rem; font-size: 0.9rem;" data-i18n="footer_slogan">Protecting wildlife, inspiring wonder.</p>
         </footer>
-        
+
         <script id="main-js">
         document.addEventListener("DOMContentLoaded", () => {
             
